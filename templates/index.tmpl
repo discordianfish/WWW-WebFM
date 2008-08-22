@@ -1,0 +1,122 @@
+<HTML>
+	<BODY>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="refresh" content="<%= INFO.remain %>">
+		<title><%= INFO.artist %> - <%= INFO.title %> (<%= INFO.album %>)</title>
+		<style type="text/css">
+<!--
+a { text-decoration: none; color: black; }
+form ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0.5em;
+	font-size: small;
+	position: absolute;
+	right: 1em;
+	background-color: lightgray;
+	border: 1px dotted black;
+}
+form ul li
+{
+	display: none;
+}
+
+#type { display: block; }
+
+form ul:hover li
+{
+	display: block;
+}
+
+
+#player
+{
+	position: absolute;
+	border: 1px solid black;
+	width: auto;
+	background-color: gray;
+}
+#player form
+{
+	margin: 1em;
+}
+
+#display
+{
+	background-color: green;
+	border: 0.5em ridge green;
+	padding: 0.5em;
+	margin-bottom: 1em;
+	color: white;
+}
+
+#artist { font-size: 24pt }
+#album { font-size: 18pt }
+#control { font-size: 24pt; padding: 0.5em; width: 100%}
+#control a
+{
+	padding: 0.3em;
+	background-color: #aaa;
+	border: 3px ridge #aaa;
+	text-align: center;
+}
+#control a:hover
+{
+	border-style: inset;
+}
+#title
+{
+	font-size: 18pt;
+	margin-left: 1em;
+}
+-->
+		</style>
+	</HEAD>
+	<div id="status"><%= STATUS %></div>
+	<div id="player">
+		<div id="display">
+			<span id="name-station">
+				<%= INFO.name-station %>
+			</span>
+			<span id="artist">
+				<a href="?rm=action;action=play;type=artist;param=<%= INFO.artist %>"><%= INFO.artist %></a>
+			</span><br />
+			<span id="title">
+				<%= INFO.title %>
+			</span>
+			<span id="album">
+				(<%= INFO.album %>)
+			</span>
+			<span id="timer">
+				<%= INFO.remain %>/<%= INFO.duration %>
+			</span>
+		</div>
+		<span id="control">
+			<a id="love" href="?rm=action;action=love">&hearts;</a>
+			<a id="ban" href="?rm=action;action=ban">&Chi;</a>
+			<a id="skip" href="?rm=action;action=skip">&rang;&rang;</a>
+			<a id="pause" href="?rm=action;action=pause">||</a>
+			<a id="stop" href="?rm=action;action=stop">[ ]</a>
+		</span>
+		<form method='GET'>
+			<input type="hidden" name="rm" value="action">
+			<input type="hidden" name="action" value="play">
+			<ul>
+				<li id='type'>input type</li>
+				<li><input type="radio" name="type" value="user_personal">user's personal:</li>
+				<li><input type="radio" name="type" value="user_playlist">user's playlist:</li>
+				<li><input type="radio" name="type" value="user_neighbours">user's neighbours:</li>
+				<li><input type="radio" name="type" value="user_recommended">user's recommended:</li>
+				<li><input type="radio" name="type" value="artist">artists like:</li>
+				<li><input type="radio" name="type" value="tag">tagged as:</li>
+				<li><input type="radio" name="type" value="group">from group:</li>
+				<li><input type="radio" name="type" value="url">url</li>
+			</ul>
+			<input type="text" name="param">
+			<input type="submit" value="Play">
+		</form>
+	</div>
+	</BODY>
+</HTML>
