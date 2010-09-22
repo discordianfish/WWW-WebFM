@@ -1,4 +1,4 @@
-package CGI::Application::WebFM;
+package WWW::WebFM;
 
 use CGI::Application;
 use Encode;
@@ -159,7 +159,8 @@ sub play
 		my $fs = $self->{urlf}->{$type};
 		die "invalid type" unless $fs;
 
-		$url = sprintf $fs, $param;
+		use URI::Escape qw(uri_escape);
+		$url = sprintf $fs, uri_escape $param;
 		warn "type: $type, fs: $fs, url: $url";
 	} else
 	{
